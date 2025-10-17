@@ -16,7 +16,12 @@ class Zone:
 
 DATA_DIR: Path = Path.home() / ".paketmanager"
 DATABASE_PATH: Path = DATA_DIR / "paketmanager.db"
-REMOTE_DAV_URL: str = "https://nextcloud.aralbruehl.de/public.php/dav/files/HMMEZAB25as8mbM/"
+
+SFTP_HOST: str = "217.154.10.167"
+SFTP_PORT: int = 22
+SFTP_USERNAME: str = "hermes"
+SFTP_PASSWORD: str = "2tHM3e#hdv5A"
+SFTP_REMOTE_PATH: str = "hermes-directory.csv"
 
 # Interval (in milliseconds) for synchronising the delivery list.
 SYNC_INTERVAL_MS: int = 60_000
@@ -28,14 +33,6 @@ DEFAULT_ZONES: List[Zone] = [
     Zone("Zone C"),
     Zone("Zone D"),
 ]
-
-# Filename preference order when multiple candidate files exist in the WebDAV share.
-PREFERRED_FILENAMES: tuple[str, ...] = (
-    "deliveries.json",
-    "deliveries.csv",
-    "lieferungen.json",
-    "lieferungen.csv",
-)
 
 # Similarity threshold for automatically associating scanned numbers with OCR entries.
 FUZZY_MATCH_THRESHOLD: float = 0.6

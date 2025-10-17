@@ -1,12 +1,12 @@
 # Paketmanager
 
-Ein Desktop-Programm für den Raspberry Pi 4 zum Verwalten von Paketen in einer Tankstelle. Die Anwendung synchronisiert Zustelllisten aus einer freigegebenen Nextcloud-WebDAV-Quelle, unterstützt einen Einbuchungsmodus für das Einsortieren von Paketen in Lagerzonen und bietet eine fuzzy Suche nach Sendungsnummern und Kundennamen.
+Ein Desktop-Programm für den Raspberry Pi 4 zum Verwalten von Paketen in einer Tankstelle. Die Anwendung synchronisiert Zustelllisten über eine SFTP-Verbindung, unterstützt einen Einbuchungsmodus für das Einsortieren von Paketen in Lagerzonen und bietet eine fuzzy Suche nach Sendungsnummern und Kundennamen.
 
 ## Voraussetzungen
 
 * Raspberry Pi 4 mit installiertem Python 3.10 oder höher
 * Touchscreen (1200x800, 8") und Honeywell HF680 Barcodescanner
-* Netzwerkzugang zur Nextcloud-Instanz `https://nextcloud.aralbruehl.de/`
+* Netzwerkzugang zum SFTP-Server `217.154.10.167`
 * Optional: virtuelle Umgebung für Python
 
 ## Installation
@@ -61,7 +61,7 @@ Beim ersten Start wird eine lokale SQLite-Datenbank unter `~/.paketmanager/paket
 
 ## Synchronisation
 
-Die Anwendung synchronisiert alle 60 Sekunden mit dem Nextcloud-WebDAV-Verzeichnis. Es wird automatisch versucht, JSON- oder CSV-Dateien zu erkennen, die mindestens die Felder `tracking_number`/`sendungsnummer` und `customer`/`kunde` enthalten.
+Die Anwendung synchronisiert alle 60 Sekunden über SFTP die Datei `hermes-directory.csv`. Es wird automatisch versucht, JSON- oder CSV-Dateien zu erkennen, die mindestens die Felder `tracking_number`/`sendungsnummer` und `customer`/`kunde` enthalten.
 
 ## Konfiguration
 
