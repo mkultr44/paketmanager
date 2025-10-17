@@ -17,6 +17,23 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Installation auf dem Raspberry Pi Desktop
+
+Das Skript `scripts/install_hermes.sh` automatisiert die Einrichtung auf einem
+Raspberry Pi OS Desktop. Es kopiert das Projekt nach `/opt/hermes`, richtet
+eine virtuelle Umgebung ein und erstellt einen systemd-User-Service, der die
+Anwendung direkt nach der Benutzeranmeldung im Vollbild startet.
+
+Führen Sie das Skript mit Root-Rechten aus. Der Standardnutzer ist `pi`, über
+die Umgebungsvariable `TARGET_USER` kann ein anderer Nutzer angegeben werden:
+
+```bash
+sudo TARGET_USER=pi ./scripts/install_hermes.sh
+```
+
+Nach erfolgreicher Installation startet die Anwendung automatisch bei der
+nächsten Anmeldung des angegebenen Nutzers.
+
 ## Starten
 
 ```bash

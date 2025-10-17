@@ -26,6 +26,10 @@ class PaketManagerApp(tk.Tk):
         super().__init__()
         self.title("Paketmanager")
         self.geometry("1200x800")
+        self._fullscreen = True
+        self.attributes("-fullscreen", True)
+        self.bind("<F11>", self._toggle_fullscreen)
+        self.bind("<Escape>", self._exit_fullscreen)
         self.configure(bg="#1e1e1e")
         self.columnconfigure(0, weight=1)
         self.rowconfigure(2, weight=1)
@@ -159,6 +163,18 @@ class PaketManagerApp(tk.Tk):
             )
             button.grid(row=index, column=1, padx=5, pady=5, sticky="ew")
             self.zone_buttons[zone.name] = button
+
+    def _toggle_fullscreen(self, event: tk.Event | None = None) -> None:
+        """Toggle fullscreen mode."""
+
+        self._fullscreen = not self._fullscreen
+        self.attributes("-fullscreen", self._fullscreen)
+
+    def _exit_fullscreen(self, event: tk.Event | None = None) -> None:
+        """Leave fullscreen mode when escape is pressed."""
+
+        if self._fullscreen:
+            self._toggle_fullscreen()
 
         # Hidden entry for scanner input during inbound mode
         self.scan_entry = ttk.Entry(container)
